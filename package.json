@@ -1,0 +1,26 @@
+{
+  "name": "tp-3-modulos-en-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "app": "app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValentinaElterman/TP-3-Modulos-en-Node.git"
+  },
+  "keywords": [],
+  "author": "valentina elterman y ailin severino",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ValentinaElterman/TP-3-Modulos-en-Node/issues"
+  },
+  "homepage": "https://github.com/ValentinaElterman/TP-3-Modulos-en-Node#readme",
+  "dependencies": {
+    "dayjs": "^1.11.20"
+  }
+}
