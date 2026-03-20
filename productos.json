@@ -12,7 +12,39 @@
     "precio": 120000
   },
   {
+    "nombre": "Banana",
+    "precio": 1000
+  },
+  {
+    "nombre": "Manzana",
+    "precio": 1000
+  },
+  {
     "nombre": "Monitor",
     "precio": 120000
+  },
+  {
+    "nombre": "Monitor",
+    "precio": 120000
+  },
+  {
+    "nombre": "Monitor",
+    "precio": 120000
+  },
+  {
+    "nombre": "Monitor",
+    "precio": 120000
+  },
+  {
+    "nombre": "Monitor",
+    "precio": 120000
+  },
+  {
+    "nombre": "Lechuga",
+    "precio": 1200
+  },
+  {
+    "nombre": "Lechuga",
+    "precio": 1200
   }
 ]

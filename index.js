@@ -1,16 +1,17 @@
 import fs from 'fs';
-import dayjs from './node_modules/dayjs/dayjs.min.js';
+import dayjs from 'dayjs';
 
 //1)
 try {
     const leer = fs.readFileSync('productos.json', 'utf-8');
     console.log('Productos:', leer);
+    console.log('--------------');
     
 } catch (error) {
-    console.log('Error al leer el archivo:', error.message);
+    console.error('Error al leer el archivo:', error.message);
 }
 
-//2) VERIFICAR
+//2)
 function agregarProducto(nombre, precio){
     try {
     const contenido = fs.readFileSync('productos.json', 'utf-8');
@@ -18,17 +19,15 @@ function agregarProducto(nombre, precio){
 
     const nuevoProducto = {nombre, precio};
     listaProductos.push(nuevoProducto);
-    fs.writeFileSync('productos.json', JSON.stringify(listaProductos, null, 2));
+    fs.writeFileSync('productos.json', JSON.stringify(listaProductos, null, 2)); //strimg JSON
     console.log("Se agrego correctamente:", nombre);
+    console.log('--------------');
 
     
     } catch (error) {
-        console.log('Error al leer el archivo:', error.message);
-        console.log('--------------');
+        console.error('Error al leer el archivo:', error.message);
     }
 }
-
-agregarProducto("Monitor", 120000);
 
 //3)
 function mostrar(){
@@ -38,15 +37,14 @@ function mostrar(){
     console.log('--------------');
 }
 
-mostrar();
-
 //4)
 async function obtenerPais(nombrePais){
 try {
         const respuesta = await fetch(`https://restcountries.com/v3.1/name/${nombrePais}`);
 
         if (!respuesta.ok) {
-           console.log(`No se encontró el país: ${nombrePais}`);
+            console.log(`No se encontró el país: ${nombrePais}`);
+            return;
         }
 
         const datos = await respuesta.json();
@@ -59,7 +57,29 @@ try {
         console.log('--------------');
 
     } catch (error) {
-        console.log('Error al consultar la API:', error.message);}
+        console.error('Error al consultar la API:', error.message);
+    }
 }
 
-obtenerPais("Argentina");
+//5)
+function buscarProducto(nombre){
+    try {
+    const products = fs.readFileSync('productos.json', 'utf-8');
+    const listaProductos = JSON.parse(products); 
+    const encontrado = listaProductos.find(p => p.nombre === nombre);
+    if (encontrado) {
+            console.log('Producto encontrado:', encontrado);
+            console.log('----------------');
+        } else {
+            console.log(`El producto "${nombre}" no existe.`);
+        }
+    
+    } catch (error) {
+        console.error('Error al leer el archivo:', error.message);
+    }
+}
+
+agregarProducto("Lechuga", 1200);
+mostrar();
+buscarProducto("Banana");
+obtenerPais("Argentina"); // ultima porque sino aparece tarde por el await.
