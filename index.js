@@ -79,7 +79,117 @@ function buscarProducto(nombre){
     }
 }
 
+//6)
+function GeneradorArchivoCSV(){
+    try {
+        const data = fs.readFileSync('productos.json', 'utf-8');
+        const productos = JSON.parse(data);
+
+        let contenidoCSV = "nombre,precio\n";
+
+        productos.forEach(p => {
+            contenidoCSV += `${p.nombre},${p.precio}\n`;
+        });
+
+        fs.writeFileSync('productos.csv', contenidoCSV);
+
+        console.log("Archivo 'productos.csv' generado.");
+        console.log(contenidoCSV);
+        console.log('--------------');
+
+    } catch (error) {
+        console.error('Error al generar el CSV:', error.message);
+    }
+}
+
+//7)
+function temporizador() {
+    let contador = 1;
+
+    const intervalo = setInterval(() => {
+    console.log(contador);
+
+    if (contador === 10) {
+        clearInterval(intervalo);
+                
+        setTimeout(() => {
+        console.log("Fin del contador");
+        console.log('--------------');
+        }, 100); 
+    }
+
+    contador++;
+    }, 1000);
+}
+
+//8)
+function analizarTexto(texto){
+    let vocales = 0;
+    let consonantes = 0;
+    
+    const palabrasArray = texto.split(' ');
+    let palabrasContadas = 0;
+    for (let i = 0; i < palabrasArray.length; i++) {
+        if (palabrasArray[i] !== "") {
+            palabrasContadas++;
+        }
+    }
+
+    for (let i = 0; i < texto.length; i++) {
+        let letra = texto[i].toLowerCase();
+
+        if (letra >= 'a' && letra <= 'z') {
+            if (letra === 'a' || letra === 'e' || letra === 'i' || letra === 'o' || letra === 'u') {
+                vocales++;
+            } else {
+                consonantes++;
+            }
+        }
+    }
+
+    const resultado = {
+        caracteres: texto.length,
+        palabras: palabrasContadas,
+        vocales: vocales,
+        consonantes: consonantes
+    };
+
+    console.log(resultado);
+    console.log('--------------');
+}
+
+//9)
+function validarPassword(password) {
+    let tieneNumero = false;
+    let tieneMayuscula = false;
+
+    if (password.length >= 8) {
+        
+        for (let i = 0; i < password.length; i++) {
+            let caracter = password[i];
+
+            if (caracter >= '0' && caracter <= '9') {
+                tieneNumero = true;
+            }
+            if (caracter >= 'A' && caracter <= 'Z') {
+                tieneMayuscula = true;
+            }
+        }
+    }
+
+    if (password.length >= 8 && tieneNumero && tieneMayuscula) {
+        console.log("Password válida");
+    } else {
+        console.log("Password inválida");
+    }
+    console.log('--------------');
+}
+
 agregarProducto("Lechuga", 1200);
 mostrar();
 buscarProducto("Banana");
-obtenerPais("Argentina"); // ultima porque sino aparece tarde por el await.
+GeneradorArchivoCSV();
+analizarTexto("Hola, aguante larry 123");
+validarPassword("Larry123");
+obtenerPais("Argentina"); 
+temporizador();
